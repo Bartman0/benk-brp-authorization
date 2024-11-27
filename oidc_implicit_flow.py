@@ -6,7 +6,7 @@ from urllib.parse import urlparse, parse_qs
 TENANT_ID = "<put your tenant here>"
 AUTH_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize"
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
-CLIENT_ID = "<put ypur app id here>"
+CLIENT_ID = "<put your app id here>"
 REDIRECT_URI = "https://benk-brp-ontwikkel.amsterdam.nl"  # This should match your redirect URI in the OIDC provider
 
 
