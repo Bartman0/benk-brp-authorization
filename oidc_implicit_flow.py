@@ -3,7 +3,7 @@ import jwt
 from urllib.parse import urlparse, parse_qs
 
 # Configuration
-TENANT_ID = "<put your tenant here?"
+TENANT_ID = "<put your tenant here>"
 AUTH_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize"
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
 CLIENT_ID = "<put ypur app id here>"
