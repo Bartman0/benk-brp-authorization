@@ -3,10 +3,10 @@ import jwt
 from urllib.parse import urlparse, parse_qs
 
 # Configuration
-TENANT_ID = "72fca1b1-2c2e-4376-a445-294d80196804"
+TENANT_ID = "<put your tenant here?"
 AUTH_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize"
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
-CLIENT_ID = "9d1fd8a8-256b-42d3-aabf-f276b1e5c61f"
+CLIENT_ID = "<put ypur app id here>"
 REDIRECT_URI = "https://benk-brp-ontwikkel.amsterdam.nl"  # This should match your redirect URI in the OIDC provider
 
 
