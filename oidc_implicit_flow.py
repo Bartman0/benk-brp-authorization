@@ -1,13 +1,17 @@
+import os
+import gnureadline as readline
 import requests
 import jwt
 from urllib.parse import urlparse, parse_qs
 
 # Configuration
-TENANT_ID = "<put your tenant here>"
+TENANT_ID = os.environ["AZURE_TENANT_ID"]
 AUTH_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize"
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
-CLIENT_ID = "<put your app id here>"
-REDIRECT_URI = "https://benk-brp-ontwikkel.amsterdam.nl"  # This should match your redirect URI in the OIDC provider
+CLIENT_ID = os.environ["AZURE_APP_ID_2"]
+REDIRECT_URI = (
+    "http://localhost:3000"  # This should match your redirect URI in the OIDC provider
+)
 
 
 # Step 1: Redirect to the Authorization Server
@@ -46,11 +50,11 @@ def handle_redirect():
 def verify_access_token(id_token):
     # In a real scenario, you would validate the ID token with the authorization server.
     # Here we'll just print some information about the tokens.
-    #print(f"ID Token raw: {id_token}")
-    print('-' * 32)
+    # print(f"ID Token raw: {id_token}")
+    print("-" * 32)
     token = jwt.decode(id_token, options={"verify_signature": False})
     print(f"ID Token: {token}")
-    print('-' * 32)
+    print("-" * 32)
     print(f"App roles: {token['roles']}")
 
 
