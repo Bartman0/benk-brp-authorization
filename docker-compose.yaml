@@ -1,0 +1,8 @@
+name: echo
+
+services:
+  nginx:
+    image: localhost/echo
+    build: .
+    ports:
+      - 3000:80
