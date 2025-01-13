@@ -16,7 +16,8 @@ class OAuth2TokenValidation:
         self.jwks_url = (
             f"https://login.microsoftonline.com/{tenant_id}/discovery/v2.0/keys"
         )
-        self.issuer_url = f"https://login.microsoftonline.com/{tenant_id}/v2.0"
+        # self.issuer_url = f"https://login.microsoftonline.com/{tenant_id}/v2.0"
+        self.issuer_url = f"https://sts.windows.net/{tenant_id}/"
         self.audience = f"{client_id}"
 
         self.jwks = json.loads(urlopen(self.jwks_url).read())
@@ -101,6 +102,6 @@ class OAuth2TokenValidation:
 
 if __name__ == "__main__":
     validation = OAuth2TokenValidation(
-        os.environ["AZURE_TENANT_ID"], os.environ["AZURE_APP_ID_2"]
+        os.environ["AZURE_TENANT_ID"], os.environ["AZURE_APPLICATION_ID"]
     )
     print(validation.validate_token_and_decode_it(sys.argv[1]))

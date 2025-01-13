@@ -8,7 +8,7 @@ from urllib.parse import urlparse, parse_qs
 TENANT_ID = os.environ["AZURE_TENANT_ID"]
 AUTH_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize"
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
-CLIENT_ID = os.environ["AZURE_APP_ID_2"]
+CLIENT_ID = os.environ["AZURE_APPLICATION_ID"]
 REDIRECT_URI = (
     "http://localhost:3000"  # This should match your redirect URI in the OIDC provider
 )
