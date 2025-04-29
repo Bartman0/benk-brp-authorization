@@ -1,4 +1,5 @@
 import os
+import jwt
 from azure.identity import ClientSecretCredential, DefaultAzureCredential
 
 # Retrieve the IDs and secret to use with ServicePrincipalCredentials
@@ -12,4 +13,7 @@ credential = ClientSecretCredential(
     tenant_id=tenant_id, client_id=client_id, client_secret=client_secret
 )
 
-print(credential.get_token(scope, tenant_id=tenant_id))
+token = credential.get_token(scope, tenant_id=tenant_id).token
+token_decoded = jwt.decode(token, options={"verify_signature": False})
+# print(token_decoded)
+print(token_decoded["roles"])

@@ -14,9 +14,7 @@ AUTH_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
 KEYS_URL = f"https://login.microsoftonline.com/{TENANT_ID}/discovery/keys?appid={APPLICATION_ID}"
 CLIENT_ID = os.environ["AZURE_APPLICATION_ID"]
-REDIRECT_URI = (
-    "http://localhost:3000"  # This should match your redirect URI in the OIDC provider
-)
+REDIRECT_URI = "https://mks-frontend-d0cpa7fnf0cubkhf.westeurope-01.azurewebsites.net/"
 
 PEMSTART = "-----BEGIN CERTIFICATE-----\n"
 PEMEND = "\n-----END CERTIFICATE-----\n"
@@ -34,8 +32,9 @@ def initiate_auth():
         "response_type": "id_token",
         "client_id": CLIENT_ID,
         "redirect_uri": REDIRECT_URI,
-        "scope": "openid profile email",
+        "scope": "openid profile email offline_access",
         "nonce": 69,
+        "response_mode": "fragment",
     }
 
     auth_url = f"{AUTH_URL}?{requests.compat.urlencode(params)}"
@@ -54,7 +53,7 @@ def handle_redirect():
 
     parsed_url = urlparse(redirected_url)
     query_params = parse_qs(parsed_url.fragment)
-
+    print(query_params)
     id_token = query_params.get("id_token")[0]
 
     return id_token
