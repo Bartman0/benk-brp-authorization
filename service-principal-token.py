@@ -14,6 +14,6 @@ credential = ClientSecretCredential(
 )
 
 token = credential.get_token(scope, tenant_id=tenant_id).token
+print(token)
 token_decoded = jwt.decode(token, options={"verify_signature": False})
-# print(token_decoded)
 print(token_decoded["roles"])
